@@ -1,0 +1,1 @@
+# local-gitops-observability-lab
