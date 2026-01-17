@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/<YOUR_GH_ORG>/local-gitops-observability-lab.git
+    repoURL: https://github.com/jaafar-harabi/local-gitops-observability-lab.git
     targetRevision: main
     path: charts/app
   destination:
