@@ -11,26 +11,45 @@ metadata:
 spec:
   replicas: 2
   selector:
-    matchLabels: { app: otel-node-api }
+    matchLabels:
+      app: otel-node-api
   template:
     metadata:
-      labels: { app: otel-node-api }
+      labels:
+        app: otel-node-api
     spec:
       containers:
         - name: api
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
           ports:
             - containerPort: 3000
           env:
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "{{ .Values.otel.endpoint }}"
           readinessProbe:
-            httpGet: { path: /healthz, port: 3000 }
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
           livenessProbe:
-            httpGet: { path: /healthz, port: 3000 }
+            httpGet:
+              path: /healthz
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
           resources:
-            requests: { cpu: "50m", memory: "64Mi" }
-            limits: { cpu: "250m", memory: "256Mi" }
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
 ---
 apiVersion: v1
 kind: Service
@@ -38,7 +57,8 @@ metadata:
   name: otel-node-api
   namespace: demo
 spec:
-  selector: { app: otel-node-api }
+  selector:
+    app: otel-node-api
   ports:
     - port: 80
       targetPort: 3000
