@@ -1,0 +1,13 @@
+# Global owner (fallback)
+* @jaafar-harabi
+
+# GitOps and infra (high risk)
+gitops/              @jaafar-harabi
+charts/              @jaafar-harabi
+policy/              @jaafar-harabi
+
+# CI / automation
+.github/workflows/   @jaafar-harabi
+
+# Governance and reports
+docs/                @jaafar-harabi
