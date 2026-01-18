@@ -1,8 +1,14 @@
 {
+<<<<<<< HEAD
   "extends": ["config:base"],
   "labels": ["dependencies"],
   "rangeStrategy": "bump",
   "packageRules": [
     { "matchManagers": ["npm"], "groupName": "npm dependencies" }
+=======
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+>>>>>>> origin/main
   ]
 }
