@@ -1,6 +1,7 @@
 image:
-  repository: ghcr.io/jaafar-harabi/local-gitops-observability-lab 
-  tag: "latest"
+  repository: local/otel-node-api
+  tag: "dev"
+  pullPolicy: IfNotPresent
 
 otel:
   endpoint: "http://otel-collector.otel:4318/v1/traces"
